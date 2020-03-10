@@ -9,7 +9,7 @@
         <dependency>
           <groupId>org.spigotmc</groupId>
           <artifactId>spigot-api</artifactId>
-          <version>1.9-R0.1-SNAPSHOT</version>
+          <version>1.15.1-R0.1-SNAPSHOT</version>
           <!--  <version>1.8.8-R0.1-SNAPSHOT</version> -->
         </dependency>
         
@@ -23,41 +23,9 @@
         <dependency>
            <groupId>net.milkbowl.vault</groupId>
            <artifactId>VaultAPI</artifactId>            
-           <version>LATEST</version>
+           <version>1.7</version>
            <scope>provided</scope>
-        </dependency> 
-        
-        <dependency>
-			<groupId>EssentialsGroupManager</groupId>
-			<artifactId>EssentialsGroupManager</artifactId>
-			<version>v1</version>
-			<scope>system</scope>
-			<systemPath>D:/ProjetosBukkit/APIs/EssentialsGroupManager.jar</systemPath>
-		</dependency>
-		
-		<dependency>
-			<groupId>PermissionsBukkit</groupId>
-			<artifactId>PermissionsBukkit</artifactId>
-			<version>v1</version>
-			<scope>system</scope>
-			<systemPath>D:/ProjetosBukkit/APIs/PermissionsBukkit-2.5.jar</systemPath>
-		</dependency>
-		
-		<dependency>
-			<groupId>PermissionsEx</groupId>
-			<artifactId>PermissionsEx</artifactId>
-			<version>v1</version>
-			<scope>system</scope>
-			<systemPath>D:/ProjetosBukkit/APIs/PermissionsEx-1.23.4.jar</systemPath>
-		</dependency>
-		
-		<dependency>
-			<groupId>zPermissions</groupId>
-			<artifactId>zPermissions</artifactId>
-			<version>v1</version>
-			<scope>system</scope>
-			<systemPath>D:/ProjetosBukkit/APIs/zPermissions-1.3beta1.jar</systemPath>
-		</dependency>		
+        </dependency>
         
     </dependencies>
     <repositories>

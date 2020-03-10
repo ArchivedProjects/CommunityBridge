@@ -19,103 +19,103 @@ import org.bukkit.plugin.Plugin;
  */
 public class PermissionHandlerBPermissions extends PermissionHandler
 {
-	public PermissionHandlerBPermissions() throws IllegalStateException
-	{
-		Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("bPermissions");
+    public PermissionHandlerBPermissions() throws IllegalStateException
+    {
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("bPermissions");
 
-		validate(plugin, "bPermissions", "2.9");
-	}
+        validate(plugin, "bPermissions", "2.9");
+    }
 
-	@Override
-	public boolean addToGroup(Player player, String groupName)
-	{
-		ApiLayer.addGroup(determineWorld(player), CalculableType.USER, player.getName(), groupName);
+    @Override
+    public boolean addToGroup(Player player, String groupName)
+    {
+        ApiLayer.addGroup(determineWorld(player), CalculableType.USER, player.getName(), groupName);
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public List<String> getGroups(Player player)
-	{
-		List<String> groups = new ArrayList<String>(Arrays.asList(ApiLayer.getGroups(determineWorld(player), CalculableType.USER, player.getName())));
+    @Override
+    public List<String> getGroups(Player player)
+    {
+        List<String> groups = new ArrayList<String>(Arrays.asList(ApiLayer.getGroups(determineWorld(player), CalculableType.USER, player.getName())));
 
-		return groups;
-	}
+        return groups;
+    }
 
-	@Override
-	public List<String> getGroupsPure(Player player)
-	{
-		List<String> groupList = getGroups(player);
+    @Override
+    public List<String> getGroupsPure(Player player)
+    {
+        List<String> groupList = getGroups(player);
 
-		Iterator<String> group = groupList.iterator();
-		while (group.hasNext())
-		{
-			if (group.next().equalsIgnoreCase("default"))
-			{
-				group.remove();
-			}
-		}
-		return groupList;
-	}
+        Iterator<String> group = groupList.iterator();
+        while (group.hasNext())
+        {
+            if (group.next().equalsIgnoreCase("default"))
+            {
+                group.remove();
+            }
+        }
+        return groupList;
+    }
 
-	@Override
-	public String getPrimaryGroup(Player player)
-	{
-		List<String> groups = getGroupsPure(player);
+    @Override
+    public String getPrimaryGroup(Player player)
+    {
+        List<String> groups = getGroupsPure(player);
 
-		if (groups.isEmpty())
-		{
-			return "";
-		}
-		else
-		{
-			return groups.get(0);
-		}
-	}
+        if (groups.isEmpty())
+        {
+            return "";
+        }
+        else
+        {
+            return groups.get(0);
+        }
+    }
 
-	@Override
-	public boolean isMemberOfGroup(Player player, String groupName)
-	{
-		return getGroupsPure(player).contains(groupName);
-	}
+    @Override
+    public boolean isMemberOfGroup(Player player, String groupName)
+    {
+        return getGroupsPure(player).contains(groupName);
+    }
 
-	@Override
-	public boolean isPrimaryGroup(Player player, String groupName)
-	{
-		return groupName.equalsIgnoreCase(getPrimaryGroup(player));
-	}
+    @Override
+    public boolean isPrimaryGroup(Player player, String groupName)
+    {
+        return groupName.equalsIgnoreCase(getPrimaryGroup(player));
+    }
 
-	@Override
-	public boolean removeFromGroup(Player player, String groupName)
-	{
+    @Override
+    public boolean removeFromGroup(Player player, String groupName)
+    {
 
-		ApiLayer.removeGroup(determineWorld(player), CalculableType.USER, player.getName(), groupName);
+        ApiLayer.removeGroup(determineWorld(player), CalculableType.USER, player.getName(), groupName);
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * bPermissions doesn't really have a notion of a "primary" group. For now,
-	 * this simply performs an addToGroup.
-	 */
-	@Override
-	public boolean setPrimaryGroup(Player player, String groupName, String formerGroupName)
-	{
-		boolean result;
-		if (formerGroupName == null)
-		{
-			result = true;
-		}
-		else
-		{
-			result = removeFromGroup(player, formerGroupName);
-		}
-		return result && addToGroup(player, groupName);
-	}
+    /**
+     * bPermissions doesn't really have a notion of a "primary" group. For now,
+     * this simply performs an addToGroup.
+     */
+    @Override
+    public boolean setPrimaryGroup(Player player, String groupName, String formerGroupName)
+    {
+        boolean result;
+        if (formerGroupName == null)
+        {
+            result = true;
+        }
+        else
+        {
+            result = removeFromGroup(player, formerGroupName);
+        }
+        return result && addToGroup(player, groupName);
+    }
 
-	@Override
-	public boolean supportsPrimaryGroups()
-	{
-		return false;
-	}
+    @Override
+    public boolean supportsPrimaryGroups()
+    {
+        return false;
+    }
 }
